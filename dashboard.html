@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel - MiliXsoft</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h2 class="logo">MiliXsoft</h2>
+      <nav>
+        <button class="nav-item">
+          <span>🏠</span> Strona główna
+        </button>
+        <button class="nav-item">
+          <span>⚙️</span> Ustawienia
+        </button>
+        <button class="nav-item" id="logoutBtn">
+          <span>🚪</span> Wyloguj
+        </button>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <h1>Witaj w panelu!</h1>
+      <p>Tu pojawią się funkcje Twojej strony.</p>
+    </main>
+  </div>
+
+  <script type="module">
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+
+    const firebaseConfig = {
+      apiKey: "TWOJE_API_KEY",
+      authDomain: "TWOJE_AUTH_DOMAIN",
+      projectId: "TWOJE_PROJECT_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      signOut(auth).then(() => {
+        window.location.href = "index.html";
+      });
+    });
+  </script>
+</body>
+</html>
