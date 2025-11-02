@@ -1,94 +1,50 @@
-:root {
-  --bg: #0a0d10;
-  --card: #11151a;
-  --accent: #6a5dfc;
-  --accent-glow: rgba(106, 93, 252, 0.6);
-  --text: #e9ecf1;
-  --text-dim: #9aa3b2;
-  --error: #ff4e4e;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Impact, sans-serif;
-}
-
 body {
-  letter-spacing: 1px;
-  background: var(--bg);
-  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--text);
+  height: 100vh;
 }
 
 .container {
-  background: var(--card);
-  padding: 35px;
-  border-radius: 14px;
-  width: 330px;
-  box-shadow: 0 0 30px var(--accent-glow);
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 300px;
 }
 
 .title {
-  text-align: center;
-  margin-bottom: 25px;
-  font-weight: 600;
-  letter-spacing: 1px;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 input {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   margin: 10px 0;
-  border: none;
-  border-radius: 8px;
-  background: #171c22;
-  color: var(--text);
-  outline: 1px solid #242a33;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 button {
   width: 100%;
-  padding: 12px;
-  margin-top: 18px;
-  border: none;
-  border-radius: 8px;
-  background: var(--accent);
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #007bff;
   color: white;
-  font-weight: bold;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  transition: 0.25s;
 }
 
 button:hover {
-  box-shadow: 0 0 12px var(--accent-glow);
+  background-color: #0056b3;
 }
 
-p.switch {
-  text-align: center;
+#status {
   margin-top: 15px;
-  font-size: 14px;
-  color: var(--text-dim);
-}
-
-p.switch span {
-  color: var(--accent);
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-p.switch span:hover {
-  text-shadow: 0 0 8px var(--accent-glow);
-}
-
-#error-box {
-  color: var(--error);
-  font-size: 14px;
-  margin-top: 10px;
-  min-height: 18px;
-  text-align: center;
+  color: red;
 }
