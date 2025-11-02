@@ -60,7 +60,7 @@ body {
   overflow-y: auto;
 }
 
-h1 {
+.title {
   font-size: 48px;
   margin-top: 0;
 }
