@@ -1,30 +1,58 @@
 <!DOCTYPE html>
-<html>
-	<head>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MIliXsoft</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Witamy w MIliXsoft</h1>
+  </header>
+  <main>
+    <h2>Logowanie</h2>
+    <input id="email" type="email" placeholder="Email"><br><br>
+    <input id="password" type="password" placeholder="Hasło"><br><br>
+    <button id="loginBtn">Zaloguj</button>
+    <button id="registerBtn">Zarejestruj</button>
+    <p id="status"></p>
+  </main>
+  <footer>
+    <p>© 2025 MIliXsoft</p>
+  </footer>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword }
+    from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-		<title>Nasze serwisy!</title>
-	
-		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		
-		<link rel="stylesheet" href="style.css" type="text/css">
+  const firebaseConfig = {
+    apiKey: "AIzaSyAzi6XK8OL8Fr1xLb-pyQw2mMPuI1-g4iM",
+    authDomain: "milixsoft-9b81e.firebaseapp.com",
+    projectId: "milixsoft-9b81e",
+    storageBucket: "milixsoft-9b81e.firebasestorage.app",
+    messagingSenderId: "443043131107",
+    appId: "1:443043131107:web:1ff1926eff9ada03dedfd6"
+  };
 
-	</head>
-	<body>
-	
-		<div id="container">
-		
-			<div id="logo">Nasze Serwisy!</div>
-		
-			<div id="serwisy">
-			
-				<a href="./rea" class="link">RTV EURO AGD</a><br />
-				<a  href="./" class="link">Portfolio</a><br/>
-				<a  href="./piosenka" class="link">Wybór Piosenki</a>
-			
-			</div>
-			
-		</div>
-		
-	</body>
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  document.getElementById("registerBtn").onclick = () => {
+    const email = email.value;
+    const password = password.value;
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => status.innerText = "✅ Konto utworzone!")
+      .catch(err => status.innerText = "❌ " + err.message);
+  };
+
+  document.getElementById("loginBtn").onclick = () => {
+    const email = email.value;
+    const password = password.value;
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => status.innerText = "🔓 Zalogowano!")
+      .catch(err => status.innerText = "❌ " + err.message);
+  };
+</script>
+</body>
 </html>
