@@ -1,89 +1,94 @@
-/* Ustawienia ogólne */
-body {
-  background-image: url("img/background.png");
-  font-size: 28px;
-  font-family: Impact, sans-serif;
-  color: #fff;
+:root {
+  --bg: #0a0d10;
+  --card: #11151a;
+  --accent: #6a5dfc;
+  --accent-glow: rgba(106, 93, 252, 0.6);
+  --text: #e9ecf1;
+  --text-dim: #9aa3b2;
+  --error: #ff4e4e;
+}
+
+* {
   margin: 0;
   padding: 0;
-}
-
-/* Główny kontener */
-#container {
-  max-width: 1000px;   /* na dużych ekranach max 1000px */
-  width: 95%;          /* na mniejszych ekranach dopasuje się */
-  min-height: 86vh;
-  margin: 20px auto;
-  background-color: #222;
-  -webkit-box-shadow: 3px 3px 30px 5px rgba(204,204,204,0.9);
-  -moz-box-shadow: 3px 3px 30px 5px rgba(204,204,204,0.9);
-  box-shadow: 3px 3px 30px 5px rgba(204,204,204,0.9);
-  border: none;
-  border-radius: 40px;
-  padding: 20px;
   box-sizing: border-box;
+  font-family: Impact, sans-serif;
 }
 
-/* Logo */
-#logo {
-  margin: 0 auto 20px auto;
-  font-size: 50px;
+body {
+  letter-spacing: 1px;
+  background: var(--bg);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text);
+}
+
+.container {
+  background: var(--card);
+  padding: 35px;
+  border-radius: 14px;
+  width: 330px;
+  box-shadow: 0 0 30px var(--accent-glow);
+}
+
+h2 {
   text-align: center;
+  margin-bottom: 25px;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
-/* Sekcja serwisy */
-#serwisy {
-  max-width: 750px;
-  width: 90%;
-  margin: 10px auto;
-  background-color: #333;
-  padding: 15px;
-  border-radius: 20px;
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  background: #171c22;
+  color: var(--text);
+  outline: 1px solid #242a33;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 18px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+button:hover {
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+p.switch {
   text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: var(--text-dim);
 }
 
-/* Linki */
-.link {
-  color: #fff;
-  text-decoration: none;
+p.switch span {
+  color: var(--accent);
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.link:hover {
-  text-decoration: underline;
-  color: #dee;
+p.switch span:hover {
+  text-shadow: 0 0 8px var(--accent-glow);
 }
 
-/* Responsywność */
-
-/* Tablety i mniejsze laptopy */
-@media (max-width: 1024px) {
-  body {
-    font-size: 24px;
-  }
-  #logo {
-    font-size: 40px;
-  }
-  #container {
-    border-radius: 20px;
-  }
-}
-
-/* Telefony */
-@media (max-width: 600px) {
-  body {
-    font-size: 20px;
-  }
-  #logo {
-    font-size: 28px;
-  }
-  #container {
-    width: 100%;
-    border-radius: 0; /* na telefonie prościej wygląda */
-    margin: 0;
-    min-height: auto;
-  }
-  #serwisy {
-    width: 100%;
-    border-radius: 0;
-  }
+#error-box {
+  color: var(--error);
+  font-size: 14px;
+  margin-top: 10px;
+  min-height: 18px;
+  text-align: center;
 }
