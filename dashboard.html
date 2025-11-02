@@ -9,44 +9,88 @@
 <body>
   <div class="layout">
     <aside class="sidebar">
-      <div class="logo">MiliXsoft</div>
+      <div class="user-info">
+        <img id="userAvatar" src="https://i.imgur.com/0y8Ftya.png" class="avatar" />
+        <div id="userName" class="username">Wczytywanie...</div>
+      </div>
+
       <nav>
-        <button class="nav-item">
-          <span>🏠</span> Strona główna
-        </button>
-        <button class="nav-item">
-          <span>⚙️</span> Ustawienia
-        </button>
-        <button class="nav-item" id="logoutBtn">
-          <span>🚪</span> Wyloguj
-        </button>
+        <button class="nav-item" id="homeBtn">🏠 Strona główna</button>
+        <button class="nav-item" id="settingsBtn">⚙️ Ustawienia</button>
+        <button class="nav-item" id="logoutBtn">🚪 Wyloguj</button>
       </nav>
     </aside>
 
     <main class="content">
-      <div class="title">Witaj w panelu!</div>
-      <p>Tu pojawią się funkcje Twojej strony.</p>
+      <h1 id="pageTitle">Witaj w panelu!</h1>
+
+      <div id="homePage" class="page active">
+        <div class="card-grid">
+          <div class="card">Funkcja 1</div>
+          <div class="card">Funkcja 2</div>
+          <div class="card">Funkcja 3</div>
+        </div>
+      </div>
+
+      <div id="settingsPage" class="page" style="display:none;">
+        <h2>Ustawienia użytkownika</h2>
+        <label>Zmień avatar (URL):</label>
+        <input id="avatarInput" type="text" placeholder="https://link-do-obrazka.png" />
+        <button id="updateAvatarBtn">Zapisz avatar</button>
+      </div>
     </main>
   </div>
 
   <script type="module">
-    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, signOut, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
     const firebaseConfig = {
-      apiKey: "TWOJE_API_KEY",
-      authDomain: "TWOJE_AUTH_DOMAIN",
-      projectId: "TWOJE_PROJECT_ID"
+      apiKey: "AIzaSyAzi6XK8OL8Fr1xLb-pyQw2mMPuI1-g4iM",
+      authDomain: "milixsoft-9b81e.firebaseapp.com",
+      projectId: "milixsoft-9b81e",
+      storageBucket: "milixsoft-9b81e.firebasestorage.app",
+      messagingSenderId: "443043131107",
+      appId: "1:443043131107:web:1ff1926eff9ada03dedfd6",
+      measurementId: "G-F71Z6M69GM"
     };
 
     const app = initializeApp(firebaseConfig);
-    const auth = getAuth();
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        window.location.href = "index.html";
+      } else {
+        document.getElementById("userName").textContent = user.email;
+        if (user.photoURL) document.getElementById("userAvatar").src = user.photoURL;
+      }
+    });
 
     document.getElementById("logoutBtn").addEventListener("click", () => {
-      signOut(auth).then(() => {
-        window.location.href = "index.html";
-      });
+      signOut(auth).then(() => window.location.href = "index.html");
     });
+
+    document.getElementById("settingsBtn").onclick = () => {
+      document.getElementById("homePage").style.display = "none";
+      document.getElementById("settingsPage").style.display = "block";
+      document.getElementById("pageTitle").textContent = "Ustawienia";
+    };
+
+    document.getElementById("homeBtn").onclick = () => {
+      document.getElementById("homePage").style.display = "block";
+      document.getElementById("settingsPage").style.display = "none";
+      document.getElementById("pageTitle").textContent = "Witaj w panelu!";
+    };
+
+    document.getElementById("updateAvatarBtn").onclick = () => {
+      const newAvatar = document.getElementById("avatarInput").value;
+      const user = auth.currentUser;
+      updateProfile(user, { photoURL: newAvatar }).then(() => {
+        document.getElementById("userAvatar").src = newAvatar;
+        alert("Avatar zaktualizowany!");
+      });
+    };
   </script>
 </body>
 </html>
