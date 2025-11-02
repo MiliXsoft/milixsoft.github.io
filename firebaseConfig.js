@@ -1,4 +1,3 @@
-// firebaseConfig.js
 export const firebaseConfig = {
   apiKey: "AIzaSyAzi6XK8OL8Fr1xLb-pyQw2mMPuI1-g4iM",
   authDomain: "milixsoft-9b81e.firebaseapp.com",
