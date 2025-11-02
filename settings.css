@@ -1,0 +1,60 @@
+/* Settings Page Styles */
+:root {
+  --accent: #00bfff;
+  --bg-dark: #0a0a0a;
+  --bg-panel: #111;
+  --bg-field: #222;
+  --text: #fff;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-dark);
+  color: var(--text);
+  font-family: Impact, sans-serif;
+}
+
+.settings-container {
+  padding: 40px;
+}
+
+.settings-container h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: var(--accent);
+}
+
+#settingsForm {
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+#settingsForm label {
+  font-size: 20px;
+}
+
+#settingsForm input[type="text"],
+#settingsForm input[type="file"] {
+  background: var(--bg-field);
+  color: var(--text);
+  border: 2px solid var(--accent);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+.save-btn {
+  background: var(--accent);
+  border: none;
+  padding: 14px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 20px;
+  transition: 0.3s;
+}
+
+.save-btn:hover {
+  background: #14d5ff;
+}
